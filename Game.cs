@@ -61,10 +61,14 @@ namespace LemonadeStand_3DayStarter
                     {
                         for(int l = 0; l<60; l++)
                         {
-                            Thread.Sleep(1000);
-                            seconds++;
+                            Console.SetCursorPosition(25, 3);
+                            Console.Write(hours + ":" + minutes + ":" + seconds);
+                            Console.SetCursorPosition(25, 4);
+                            Console.Write("Days: " + days);
+                            Thread.Sleep(2);
+                            seconds+=50;
                         }
-                        minutes++;
+                        minutes+=5;
                         seconds = 0;
                     }
                     hours++;
@@ -73,10 +77,7 @@ namespace LemonadeStand_3DayStarter
                 days++;
                 hours = 0;
             }
-            Console.SetCursorPosition(25, 3);
-            Console.Write(hours +":" + minutes + ":"+ seconds);
-            Console.SetCursorPosition(25, 4);
-            Console.Write("Days: " + days);
+            
         }
     }
 }
