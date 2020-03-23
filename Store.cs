@@ -24,6 +24,11 @@ namespace LemonadeStand_3DayStarter
         }
 
         // member methods (CAN DO)
+
+        public void DisplayPrices()
+        {
+            Console.WriteLine("lemons: " + pricePerLemon + " Sugar Cubes: " + pricePerSugarCube + " Ice Cubes: " + pricePerIceCube + " Cup: " + pricePerCup);
+        }
         public void SellLemons(Player player)
         {
             int lemonsToPurchase = UserInterface.GetNumberOfItems("lemons");

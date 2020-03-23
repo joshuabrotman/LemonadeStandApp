@@ -20,5 +20,10 @@ namespace LemonadeStand_3DayStarter
         }
 
         // member methods (CAN DO)
+
+        public void DisplayWallet()
+        {
+            Console.WriteLine("You have: $" + wallet.Money);
+        }
     }
 }
