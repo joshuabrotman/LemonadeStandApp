@@ -28,6 +28,9 @@ namespace LemonadeStand_3DayStarter
             money -= transactionAmount;
         }
 
-        
+        public void RecieveMoneyFromCustomer(double transactionAmount)
+        {
+            money += transactionAmount;
+        }
     }
 }

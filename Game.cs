@@ -20,7 +20,7 @@ namespace LemonadeStand_3DayStarter
         public double drinkPrice;
         public int sugarCubesPerCup;
         public int iceCubesPerCup;
-        public double lemonsPerCup;
+        public int lemonsPerCup;
         public int salesCount =0;
         public int sale;
 
@@ -85,6 +85,8 @@ namespace LemonadeStand_3DayStarter
                                 UpdateTime();
                                 UpdateWallet();
                                 DisplayDrinkPrice();
+                                DisplaySales();
+                                DisplayRecipe();
                                 
                                 Thread.Sleep(0);
                                 seconds++;
@@ -110,25 +112,49 @@ namespace LemonadeStand_3DayStarter
 
         }
 
+        public void DisplayRecipe()
+        {
+            Console.SetCursorPosition(54, 2);
+            Console.Write(sugarCubesPerCup + " Sugar");
+            Console.SetCursorPosition(54, 3);
+            Console.Write(lemonsPerCup + " Lemons");
+            Console.SetCursorPosition(54, 4);
+            Console.Write(iceCubesPerCup + " Ice");
+        }
+
         public void CustomerVisit()
         {
-            if (MadeASale())
+            if (MadeASale() && NewPlayer.inventory.lemons.Count >= lemonsPerCup && NewPlayer.inventory.iceCubes.Count >= iceCubesPerCup && NewPlayer.inventory.sugarCubes.Count >= sugarCubesPerCup && NewPlayer.inventory.cups.Count >= 1)
             {
-                //NewPlayer.inventory.RemoveLemonsFromInventory(2);
-                //NewPlayer.inventory.Remove(sugarCube);
-                //NewPlayer.inventory.iceCubes.Count()--;
-                //NewPlayer.inventory.cups.Decrement;
+                NewPlayer.inventory.RemoveLemonsFromInventory(lemonsPerCup);
+                NewPlayer.inventory.RemoveSugarCubesFromInventory(sugarCubesPerCup);
+                NewPlayer.inventory.RemoveIceCubesFromInventory(iceCubesPerCup);
+                NewPlayer.inventory.RemoveCupsFromInventory(1);
+                NewPlayer.wallet.RecieveMoneyFromCustomer(drinkPrice);
+                salesCount++;
             }
+            else if (!MadeASale() && (NewPlayer.inventory.lemons.Count < lemonsPerCup || NewPlayer.inventory.iceCubes.Count < iceCubesPerCup || NewPlayer.inventory.sugarCubes.Count < sugarCubesPerCup || NewPlayer.inventory.cups.Count < 1))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.SetCursorPosition(13,9);
+                Console.Write("SOLD OUT! BUY MORE SUPPIES!");
+                Console.ResetColor();
+            }
+        }
+
+        public void DisplaySales()
+        {
+            Console.SetCursorPosition(14, 2);
+            Console.Write(salesCount);
         }
 
         public bool MadeASale()
         {
             Random saleChance = new Random();
             sale = saleChance.Next(0, 100);
-            if(sale >= 49) 
+            if(sale >= 49 && sale <=50) 
             {
-                NewPlayer.wallet.Money += drinkPrice;
-                salesCount++;
+                
                 Console.SetCursorPosition(14, 2);
                 Console.Write(salesCount);
                 return true; 
@@ -147,7 +173,7 @@ namespace LemonadeStand_3DayStarter
         {
             Console.Clear();
             Console.WriteLine("Please enter the lemons per cup: (as a decimal) ");
-            lemonsPerCup = Convert.ToDouble(Console.ReadLine());
+            lemonsPerCup = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Please enter the sugar cubes per cup:");
             sugarCubesPerCup = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Please enter the ice cubes per cup:");
