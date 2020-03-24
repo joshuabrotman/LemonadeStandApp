@@ -75,6 +75,8 @@ namespace LemonadeStand_3DayStarter
                         for (int h = 0; h < 60; h++)
                         {
                             DisplayBoard();
+                            CustomerVisit();
+                            
                             for (int l = 0; l < 60; l++)
                             {
 
@@ -83,7 +85,7 @@ namespace LemonadeStand_3DayStarter
                                 UpdateTime();
                                 UpdateWallet();
                                 DisplayDrinkPrice();
-
+                                
                                 Thread.Sleep(0);
                                 seconds++;
 
@@ -112,10 +114,10 @@ namespace LemonadeStand_3DayStarter
         {
             if (MadeASale())
             {
-                NewPlayer.inventory.lemons -= lemonsPerCup;
-                NewPlayer.inventory.sugarCubes.Remove(SugarCube);
-                NewPlayer.inventory.iceCubes.Count()--;
-                NewPlayer.inventory.cups.Decrement;
+                //NewPlayer.inventory.RemoveLemonsFromInventory(2);
+                //NewPlayer.inventory.Remove(sugarCube);
+                //NewPlayer.inventory.iceCubes.Count()--;
+                //NewPlayer.inventory.cups.Decrement;
             }
         }
 
@@ -125,8 +127,9 @@ namespace LemonadeStand_3DayStarter
             sale = saleChance.Next(0, 100);
             if(sale >= 49) 
             {
+                NewPlayer.wallet.Money += drinkPrice;
                 salesCount++;
-                Console.SetCursorPosition(14, 3);
+                Console.SetCursorPosition(14, 2);
                 Console.Write(salesCount);
                 return true; 
             }
