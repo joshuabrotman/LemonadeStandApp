@@ -110,11 +110,11 @@ namespace LemonadeStand_3DayStarter
 
         public void CustomerVisit()
         {
-            if (MadeASale)
+            if (MadeASale())
             {
                 NewPlayer.inventory.lemons -= lemonsPerCup;
-                NewPlayer.inventory.sugarCubes -= sugarCubesPerCup;
-                NewPlayer.inventory.iceCubes -= iceCubesPerCup;
+                NewPlayer.inventory.sugarCubes.Remove(SugarCube);
+                NewPlayer.inventory.iceCubes.Count()--;
                 NewPlayer.inventory.cups.Decrement;
             }
         }
