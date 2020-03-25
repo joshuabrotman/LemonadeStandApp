@@ -41,14 +41,15 @@ namespace LemonadeStand_3DayStarter
             NewStore.SellCups(NewPlayer);
             NewPlayer.DisplayWallet();
             Console.Clear();
+            
 
         }
         public void BeginGame()
         {
 
 
-
-
+            
+            Console.CursorVisible = false;
             //visit store/inventory
             BuyItems();
             SetPrice();
