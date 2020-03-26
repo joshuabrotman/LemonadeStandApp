@@ -37,6 +37,7 @@ namespace LemonadeStand_3DayStarter
             {
                 player.wallet.PayMoneyForItems(transactionAmount);
                 player.inventory.AddLemonsToInventory(lemonsToPurchase);
+
             }
         }
 

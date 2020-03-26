@@ -81,10 +81,12 @@ namespace LemonadeStand_3DayStarter
                             for (int l = 0; l < 60; l++)
                             {
 
+
+
                                 UpdateInventory();
                                 DisplayWeather();
-                                UpdateTime();
                                 UpdateWallet();
+                                UpdateTime();
                                 DisplayDrinkPrice();
                                 DisplaySales();
                                 DisplayRecipe();
